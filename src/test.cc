@@ -33,6 +33,7 @@ main (void)
   vec2 x = v.br;
   vec4 y = v.rbbr;
   y.g = v[2];
+  y[3] = 8;
   float f = y.g;
   printf ("%f\n", (float) f);
 

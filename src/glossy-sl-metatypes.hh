@@ -102,6 +102,10 @@ struct gvec<T,2> {
     assert (i < GLOSSY_ARRAY_LENGTH (v));
     return v[i];
   }
+  inline T& operator [] (unsigned int i) {
+    assert (i < GLOSSY_ARRAY_LENGTH (v));
+    return v[i];
+  }
   union {
     T v[2];
     SWIZZLE2
@@ -117,6 +121,10 @@ struct gvec<T,3> {
     assert (i < GLOSSY_ARRAY_LENGTH (v));
     return v[i];
   }
+  inline T& operator [] (unsigned int i) {
+    assert (i < GLOSSY_ARRAY_LENGTH (v));
+    return v[i];
+  }
   union {
     T v[3];
     SWIZZLE3
@@ -129,6 +137,10 @@ struct gvec<T,4> {
   { v[0] = v0; v[1] = v1; v[2] = v2; v[3] = v3; }
   // TODO add vector constructors
   inline T operator [] (unsigned int i) const {
+    assert (i < GLOSSY_ARRAY_LENGTH (v));
+    return v[i];
+  }
+  inline T& operator [] (unsigned int i) {
     assert (i < GLOSSY_ARRAY_LENGTH (v));
     return v[i];
   }

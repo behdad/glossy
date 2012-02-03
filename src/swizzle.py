@@ -32,7 +32,7 @@ for m in range (2, 5):
 	print
 	sig = ','.join ("c%d"%i for i in range (m))
 	print "#define SWIZZLE%d_PERMUTE(%s) \\" % (m,sig)
-	for n in range (1, m + 1):
+	for n in range (1, 5):
 		perm (n, m, [], n)
 	print "	/**/"
 	print "#define SWIZZLE%d \\" % m

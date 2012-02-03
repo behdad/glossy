@@ -31,10 +31,13 @@ main (void)
 {
   const vec3 v (1., 2., 3.);
   vec2 x = v.br;
+  ivec4 iv(9.);
   vec4 y = v.rbbr;
   vec3 q(3);
   y.g = v[2];
   y[3] = 8;
+
+
   float f = y.g;
   printf ("%f\n", (float) f);
 

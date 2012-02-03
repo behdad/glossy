@@ -19,7 +19,7 @@
 def perm (n, m, ns, i):
 	if i == 0:
 		ns = [str (x) for x in ns]
-		print "	Swizzle%d<T,%s> %s; \\" % (n, ','.join (ns), 'c'+'##c'.join (ns))
+		print "	Swizzle%d<T,%d,%s> %s; \\" % (n, m, ','.join (ns), 'c'+'##c'.join (ns))
 		return
 	for j in range (m):
 		perm (n, m, ns + [j], i - 1)

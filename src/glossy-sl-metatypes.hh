@@ -29,59 +29,55 @@ namespace MetaTypes {
 
 template <typename T, int n> class gvec;
 
-template <typename T, int i>
+template <typename T, int n, int i>
 struct Swizzle1 {
-  inline Swizzle1<T,i> & operator = (const T &o) {
-    T *p = reinterpret_cast <T *> (this);
-    p[i] = o;
+  inline Swizzle1<T,n,i> & operator = (const T &o) {
+    v[i] = o;
     return *this;
   }
   inline operator T (void) const {
-    const T *p = reinterpret_cast <const T *> (this);
-    return p[i];
+    return v[i];
   }
+  T v[n];
 };
-template <typename T, int i, int j>
+template <typename T, int n, int i, int j>
 struct Swizzle2 {
-  inline Swizzle2<T,i,j> & operator = (const gvec<T,2> &o) {
-    T *p = reinterpret_cast <T *> (this);
-    p[i] = o.v[0];
-    p[j] = o.v[1];
+  inline Swizzle2<T,n,i,j> & operator = (const gvec<T,2> &o) {
+    v[i] = o.v[0];
+    v[j] = o.v[1];
     return *this;
   }
   inline operator gvec<T,2> (void) const {
-    const T *p = reinterpret_cast <const T *> (this);
-    return gvec<T,2> (p[i], p[j]);
+    return gvec<T,2> (v[i], v[j]);
   }
+  T v[n];
 };
-template <typename T, int n0, int n1, int n2>
+template <typename T, int n, int n0, int n1, int n2>
 struct Swizzle3 {
-  inline Swizzle3<T,n0,n1,n2> & operator = (const gvec<T,3> &o) {
-    T *p = reinterpret_cast <T *> (this);
-    p[n0] = o.v[0];
-    p[n1] = o.v[1];
-    p[n2] = o.v[2];
+  inline Swizzle3<T,n,n0,n1,n2> & operator = (const gvec<T,3> &o) {
+    v[n0] = o.v[0];
+    v[n1] = o.v[1];
+    v[n2] = o.v[2];
     return *this;
   }
   inline operator gvec<T,3> (void) const {
-    const T *p = reinterpret_cast <const T *> (this);
-    return gvec<T,3> (p[n0], p[n1], p[n2]);
+    return gvec<T,3> (v[n0], v[n1], v[n2]);
   }
+  T v[n];
 };
-template <typename T, int n0, int n1, int n2, int n3>
+template <typename T, int n, int n0, int n1, int n2, int n3>
 struct Swizzle4 {
-  inline Swizzle4<T,n0,n1,n2,n3> & operator = (const gvec<T,4> &o) {
-    T *p = reinterpret_cast <T *> (this);
-    p[n0] = o.v[0];
-    p[n1] = o.v[1];
-    p[n2] = o.v[2];
-    p[n3] = o.v[3];
+  inline Swizzle4<T,n,n0,n1,n2,n3> & operator = (const gvec<T,4> &o) {
+    v[n0] = o.v[0];
+    v[n1] = o.v[1];
+    v[n2] = o.v[2];
+    v[n3] = o.v[3];
     return *this;
   }
   inline operator gvec<T,4> (void) const {
-    const T *p = reinterpret_cast <const T *> (this);
-    return gvec<T,4> (p[n0], p[n1], p[n2], p[n3]);
+    return gvec<T,4> (v[n0], v[n1], v[n2], v[n3]);
   }
+  T v[n];
 };
 
 

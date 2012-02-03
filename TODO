@@ -1,0 +1,22 @@
+'wizzle for swizzle
+
+vec-vec casts
+vec downsize
+vec vec constructor
+
+mat constructors.  all myriad of them.
+
+operators
+
+structure constructor and equlity nequality
+
+
+The lvalue-expression evaluates to an l-value. The assignment operator stores the value of the rvalue-
+expression into the l-value and returns an r-value with the type and precision of the lvalue-expression.
+The lvalue-expression and rvalue-expression must have the same type. All desired type-conversions must
+be specified explicitly via a constructor. Variables that are built-in types, entire structures, structure
+fields, l-values with the field selector ( . ) applied to select components or swizzles without repeated
+fields, l-values within parentheses, and l-values dereferenced with the array subscript operator ( [ ] ) are
+all l-values. Other unary, binary and ternary expressions are not l-values. This includes assignments,
+function names, swizzles with repeated fields and constants.
+

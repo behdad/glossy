@@ -19,6 +19,7 @@
 #ifndef GLOSSY_SL_HH
 #define GLOSSY_SL_HH
 
+#include "glossy-common.hh"
 #include "glossy-sl-metatypes.hh"
 
 namespace GLossy {

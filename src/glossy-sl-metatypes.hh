@@ -19,7 +19,7 @@
 #ifndef GLOSSY_SL_METATYPES_HH
 #define GLOSSY_SL_METATYPES_HH
 
-#include "glossy-sl-metatypes.hh"
+#include "glossy-common.hh"
 #include "glossy-sl-metatypes-swizzle.hh"
 
 namespace GLossy {
@@ -97,7 +97,11 @@ template <typename T>
 struct gvec<T,2> {
   inline gvec (T v0, T v1)
   { v[0] = v0; v[1] = v1; }
-  // TODO add vec2 constructors
+  // TODO add vector constructors
+  inline T operator [] (unsigned int i) const {
+    assert (i < GLOSSY_ARRAY_LENGTH (v));
+    return v[i];
+  }
   union {
     T v[2];
     SWIZZLE2
@@ -108,7 +112,11 @@ template <typename T>
 struct gvec<T,3> {
   inline gvec (T v0, T v1, T v2)
   { v[0] = v0; v[1] = v1; v[2] = v2; }
-  // Add vector constructors
+  // TODO add vector constructors
+  inline T operator [] (unsigned int i) const {
+    assert (i < GLOSSY_ARRAY_LENGTH (v));
+    return v[i];
+  }
   union {
     T v[3];
     SWIZZLE3
@@ -119,7 +127,11 @@ template <typename T>
 struct gvec<T,4> {
   inline gvec (T v0, T v1, T v2, T v3)
   { v[0] = v0; v[1] = v1; v[2] = v2; v[3] = v3; }
-  // Add vector constructors
+  // TODO add vector constructors
+  inline T operator [] (unsigned int i) const {
+    assert (i < GLOSSY_ARRAY_LENGTH (v));
+    return v[i];
+  }
   union {
     T v[4];
     SWIZZLE4

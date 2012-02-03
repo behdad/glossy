@@ -6,6 +6,7 @@ MAINTAINERCLEANFILES =
 BUILT_SOURCES =
 
 PUBLICHEADERS = \
+	glossy-common.hh \
 	glossy-sl.hh \
 	glossy-sl-metatypes.hh \
 	glossy-sl-metatypes-swizzle.hh \

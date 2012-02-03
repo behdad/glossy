@@ -26,14 +26,13 @@
 
 using namespace GLossy::SL::GLES2SL100::BasicTypes;
 
-//#include "glyphy-common.glsl"
-
 int
 main (void)
 {
-  vec3 v (1., 2., 3.);
+  const vec3 v (1., 2., 3.);
   vec2 x = v.br;
   vec4 y = v.rbbr;
+  y.g = v[2];
   float f = y.g;
   printf ("%f\n", (float) f);
 

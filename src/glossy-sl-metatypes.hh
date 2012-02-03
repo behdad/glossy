@@ -95,6 +95,8 @@ class gvec {
 
 template <typename T>
 struct gvec<T,2> {
+  inline gvec (T o)
+  { v[0] = o; v[1] = 0; }
   inline gvec (T v0, T v1)
   { v[0] = v0; v[1] = v1; }
   // TODO add vector constructors
@@ -114,6 +116,8 @@ struct gvec<T,2> {
 
 template <typename T>
 struct gvec<T,3> {
+  inline gvec (T o)
+  { v[0] = o; v[1] = 0; v[2] = o; }
   inline gvec (T v0, T v1, T v2)
   { v[0] = v0; v[1] = v1; v[2] = v2; }
   // TODO add vector constructors
@@ -133,6 +137,8 @@ struct gvec<T,3> {
 
 template <typename T>
 struct gvec<T,4> {
+  inline gvec (T o)
+  { v[0] = o; v[1] = 0; v[2] = o; v[3] = o; }
   inline gvec (T v0, T v1, T v2, T v3)
   { v[0] = v0; v[1] = v1; v[2] = v2; v[3] = v3; }
   // TODO add vector constructors

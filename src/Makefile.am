@@ -23,18 +23,19 @@ BUILT_SOURCES += \
 	glossy-sl-metatypes-swizzle.hh \
 	$(NULL)
 EXTRA_DIST += $(BUILT_SOURCES)
+MAINTAINERCLEANFILES += $(BUILT_SOURCES)
 EXTRA_DIST += \
-	ctors.py \
-	swizzle.py \
+	glossy-sl-metatypes-ctors.py \
+	glossy-sl-metatypes-swizzle.py \
 	$(NULL)
 
 RUN_PY = \
 	$(AM_V_GEN)\
 	./"$^" > "$@.tmp" && mv "$@.tmp" "$@" \
 	|| ($(RM) "$@.tmp"; false)
-glossy-sl-metatypes-ctors.hh: ctors.py
+glossy-sl-metatypes-ctors.hh: glossy-sl-metatypes-ctors.py
 	$(RUN_PY)
-glossy-sl-metatypes-swizzle.hh: swizzle.py
+glossy-sl-metatypes-swizzle.hh: glossy-sl-metatypes-swizzle.py
 	$(RUN_PY)
 
 check_PROGRAMS = test

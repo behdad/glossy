@@ -82,13 +82,6 @@ struct Swizzle4 {
 
 
 
-template <typename T, int n>
-class gvec {
-  union {
-    T v[n];
-  };
-};
-
 template <typename T>
 struct gvec<T,2> {
   inline gvec (T o)

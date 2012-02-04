@@ -45,13 +45,13 @@ print "#define GLOSSY_SL_METATYPES_CTORS_HH"
 print
 for m in range (2, 5):
 	print
-	print "#define GLOSSY_SL_METATYPES_CTORS%d \\" % m
+	print "#define GLOSSY_SL_METATYPES_CTORS_VEC%d \\" % m
 	partition ("gvec<T,%d>" % m, m, [], m)
 	print "	/**/"
 print
 for m in range (2, 5):
 	print
-	print "#define GLOSSY_SL_METATYPES_CTORS%dX%d \\" % (m, m)
+	print "#define GLOSSY_SL_METATYPES_CTORS_MAT%d \\" % m
 	partition ("gmat<T,%d>" % m, m * m, [], m * m)
 	print "	/**/"
 print

@@ -29,6 +29,7 @@ namespace MetaTypes {
 
 
 template <typename T, int n> class gvec;
+template <typename T, int n> class gmat;
 
 template <typename T, int n, int n0>
 struct ConstSwizzle1 {
@@ -106,10 +107,17 @@ struct Swizzle4 : ConstSwizzle4<T,n,n0,n1,n2,n3> {
 #include "glossy-sl-metatypes-vec.hh"
 #undef n
 
+/* Define the matrix metatypes */
+#define n 2
+#include "glossy-sl-metatypes-mat.hh"
+#undef n
+#define n 3
+#include "glossy-sl-metatypes-mat.hh"
+#undef n
+#define n 4
+#include "glossy-sl-metatypes-mat.hh"
+#undef n
 
-template <typename T, int n>
-class gmat {
-};
 
 
 }}} /* namespace GLossy::SL::MetaTypes */

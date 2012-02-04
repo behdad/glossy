@@ -18,31 +18,31 @@
 
 /* Intentionally left with no guards */
 
-/* n is defined to the vec len */
+/* n is defined to the mat size */
 template <typename T>
-struct gvec<T,n>
+struct gmat<T,n>
 {
-  inline gvec (T o)
+  inline gmat (T o)
   {
-    for (unsigned int i = 0; i < GLOSSY_ARRAY_LENGTH (v); i++)
+    memset (*this, 0, sizeof (*this));
+    for (unsigned int i = 0; i < GLOSSY_ARRAY_LENGTH (v); i += n + 1)
       v[i] = o;
   }
 
   /* Assorted constructors */
-  GLOSSY_PASTE (GLOSSY_SL_METATYPES_CTORS_VEC, n)
+  GLOSSY_PASTE (GLOSSY_SL_METATYPES_CTORS_MAT, n)
 
-  inline T operator [] (unsigned int i) const {
-    assert (i < GLOSSY_ARRAY_LENGTH (v));
-    return v[i];
+  inline gvec<T,n> operator [] (unsigned int i) const {
+    assert (i < GLOSSY_ARRAY_LENGTH (c));
+    return c[i];
   }
-  inline T& operator [] (unsigned int i) {
-    assert (i < GLOSSY_ARRAY_LENGTH (v));
-    return v[i];
+  inline gvec<T,n>& operator [] (unsigned int i) {
+    assert (i < GLOSSY_ARRAY_LENGTH (c));
+    return c[i];
   }
 
   union {
-    T v[n];
-    /* Assorted swizzles */
-    GLOSSY_PASTE (GLOSSY_SL_METATYPES_SWIZZLE, n)
+    T v[n * n];
+    gvec<T,n> c[n]; /* Columns */
   };
 };

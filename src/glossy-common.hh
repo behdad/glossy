@@ -21,6 +21,7 @@
 
 #include <math.h>
 #include <assert.h>
+#include <string.h>
 
 #define GLOSSY_ARRAY_LENGTH(__array) ((signed int) (sizeof (__array) / sizeof (__array[0])))
 

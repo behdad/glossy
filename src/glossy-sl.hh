@@ -22,11 +22,20 @@
 #include "glossy-common.hh"
 #include "glossy-sl-metatypes.hh"
 
+typedef int int_;
+typedef unsigned int unsigned_int;
+typedef float float_;
+#define int Int
+#define float Float
+
 namespace GLossy {
 namespace SL {
 namespace GLES2SL100 {
 namespace BasicTypes {
 
+namespace PrecisionHigh {
+typedef int_ int;
+typedef float_ float;
 typedef MetaTypes::vec<float, 2> vec2;
 typedef MetaTypes::vec<float, 3> vec3;
 typedef MetaTypes::vec<float, 4> vec4;
@@ -40,7 +49,41 @@ typedef MetaTypes::mat<float, 2> mat2;
 typedef MetaTypes::mat<float, 3> mat3;
 typedef MetaTypes::mat<float, 4> mat4;
 
+struct sampler2D {};
+struct samplerCube {};
+
+} /* namespace PrecisionHigh */
+
+namespace PrecisionLow {
+using namespace PrecisionHigh;
+} /* namespace PrecisionLow */
+
+namespace PrecisionMedium {
+using namespace PrecisionHigh;
+} /* namespace PrecisionMedium */
+
 
 }}}} /* namespace GLossy::SL::GLES2SL100::BasicTypes */
+
+
+/* TODO move these to the proper place */
+#define GL_ES 1
+#undef __VERSION__
+#define __VERSION__ 100
+
+/* For now, these don't do anything */
+#define uniform
+#define attribute
+#define varying
+
+#define in const
+#define out ERR /* Can't implement this :( */
+#define inout ERR /* Can't implement this :( */
+
+/* For now, these don't do anything */
+#define highp      PrecisionHigh::
+#define mediump    PrecisionMedium::
+#define lowp       PrecisionLow::
+#define precision  using
 
 #endif /* GLOSSY_SL_HH */

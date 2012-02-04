@@ -27,18 +27,18 @@ namespace SL {
 namespace GLES2SL100 {
 namespace BasicTypes {
 
-typedef MetaTypes::gvec<float, 2> vec2;
-typedef MetaTypes::gvec<float, 3> vec3;
-typedef MetaTypes::gvec<float, 4> vec4;
-typedef MetaTypes::gvec<bool,  2> bvec2;
-typedef MetaTypes::gvec<bool,  3> bvec3;
-typedef MetaTypes::gvec<bool,  4> bvec4;
-typedef MetaTypes::gvec<int,   2> ivec2;
-typedef MetaTypes::gvec<int,   3> ivec3;
-typedef MetaTypes::gvec<int,   4> ivec4;
-typedef MetaTypes::gmat<float, 2> mat2;
-typedef MetaTypes::gmat<float, 3> mat3;
-typedef MetaTypes::gmat<float, 4> mat4;
+typedef MetaTypes::vec<float, 2> vec2;
+typedef MetaTypes::vec<float, 3> vec3;
+typedef MetaTypes::vec<float, 4> vec4;
+typedef MetaTypes::vec<bool,  2> bvec2;
+typedef MetaTypes::vec<bool,  3> bvec3;
+typedef MetaTypes::vec<bool,  4> bvec4;
+typedef MetaTypes::vec<int,   2> ivec2;
+typedef MetaTypes::vec<int,   3> ivec3;
+typedef MetaTypes::vec<int,   4> ivec4;
+typedef MetaTypes::mat<float, 2> mat2;
+typedef MetaTypes::mat<float, 3> mat3;
+typedef MetaTypes::mat<float, 4> mat4;
 
 
 }}}} /* namespace GLossy::SL::GLES2SL100::BasicTypes */

@@ -20,9 +20,9 @@
 
 /* n is defined to the vec len */
 template <typename T>
-struct gvec<T,n>
+struct vec<T,n>
 {
-  inline gvec (T o)
+  inline vec (T o)
   {
     for (unsigned int i = 0; i < GLOSSY_ARRAY_LENGTH (v); i++)
       v[i] = o;

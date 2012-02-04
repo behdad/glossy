@@ -20,9 +20,9 @@
 
 /* n is defined to the mat size */
 template <typename T>
-struct gmat<T,n>
+struct mat<T,n>
 {
-  inline gmat (T o)
+  inline mat (T o)
   {
     memset (*this, 0, sizeof (*this));
     for (unsigned int i = 0; i < GLOSSY_ARRAY_LENGTH (v); i += n + 1)
@@ -32,17 +32,17 @@ struct gmat<T,n>
   /* Assorted constructors */
   GLOSSY_PASTE (GLOSSY_SL_METATYPES_CTORS_MAT, n)
 
-  inline gvec<T,n> operator [] (unsigned int i) const {
+  inline vec<T,n> operator [] (unsigned int i) const {
     assert (i < GLOSSY_ARRAY_LENGTH (c));
     return c[i];
   }
-  inline gvec<T,n>& operator [] (unsigned int i) {
+  inline vec<T,n>& operator [] (unsigned int i) {
     assert (i < GLOSSY_ARRAY_LENGTH (c));
     return c[i];
   }
 
   union {
     T v[n * n];
-    gvec<T,n> c[n]; /* Columns */
+    vec<T,n> c[n]; /* Columns */
   };
 };

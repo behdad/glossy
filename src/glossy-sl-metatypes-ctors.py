@@ -27,7 +27,7 @@ def partition (name, m, args, orig_m):
 				b.append ("v[%d]=v%d" % (n, i))
 				n += 1
 			else:
-				a.append ("const gvec<T,%d> &v%d" % (j, i))
+				a.append ("const vec<T,%d> &v%d" % (j, i))
 				for k in range (j):
 					if n < orig_m:
 						b.append ("v[%d]=v%d[%d]" % (n, i, k))
@@ -46,13 +46,13 @@ print
 for m in range (2, 5):
 	print
 	print "#define GLOSSY_SL_METATYPES_CTORS_VEC%d \\" % m
-	partition ("gvec<T,%d>" % m, m, [], m)
+	partition ("vec<T,%d>" % m, m, [], m)
 	print "	/**/"
 print
 for m in range (2, 5):
 	print
 	print "#define GLOSSY_SL_METATYPES_CTORS_MAT%d \\" % m
-	partition ("gmat<T,%d>" % m, m * m, [], m * m)
+	partition ("mat<T,%d>" % m, m * m, [], m * m)
 	print "	/**/"
 print
 print "#endif /* GLOSSY_SL_METATYPES_CTORS_HH */"

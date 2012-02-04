@@ -33,16 +33,13 @@ struct mat<T,n>
   GLOSSY_PASTE (GLOSSY_SL_METATYPES_CTORS_MAT, n)
 
   inline vec<T,n> operator [] (unsigned int i) const {
-    assert (i < GLOSSY_ARRAY_LENGTH (c));
-    return c[i];
+    assert (i < n);
+    return *reinterpret_cast<const vec<T,n>*> (v + i * n);
   }
   inline vec<T,n>& operator [] (unsigned int i) {
-    assert (i < GLOSSY_ARRAY_LENGTH (c));
-    return c[i];
+    assert (i < n);
+    return *reinterpret_cast<vec<T,n>*> (v + i * n);
   }
 
-  union {
-    T v[n * n];
-    vec<T,n> c[n]; /* Columns */
-  };
+  T v[n * n];
 };

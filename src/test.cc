@@ -38,8 +38,13 @@ main (void)
   y.rg = v.rg;
   y[3] = 8;
 
+  mat2 m (1,2,3,4);
+  mat2 mm (m);
 
   float f = y.g;
+
+  x = m[1];
+  f = x[1];
   printf ("%f\n", (float) f);
 
   for (unsigned int i = 0; i < 3; i++)

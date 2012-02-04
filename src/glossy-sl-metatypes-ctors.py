@@ -40,7 +40,7 @@ def partition (name, m, args, orig_m, mm, limited = False):
 						b.append ("*this=v%d" % i)
 					else:
 						# mat
-						b.append ("c[%d]=v%d" % (n / mm, i))
+						b.append ("*this[%d]=v%d" % (n / mm, i))
 				else:
 					for k in range (j):
 						if n < orig_m:

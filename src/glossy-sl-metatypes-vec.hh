@@ -22,6 +22,10 @@
 template <typename T>
 struct vec<T,n>
 {
+  inline vec (void)
+  {
+    memset (this, 0, sizeof (*this));
+  }
   inline vec (T o)
   {
     for (unsigned int i = 0; i < GLOSSY_ARRAY_LENGTH (v); i++)
@@ -38,6 +42,15 @@ struct vec<T,n>
   inline T& operator [] (unsigned int i) {
     assert (i < GLOSSY_ARRAY_LENGTH (v));
     return v[i];
+  }
+
+  /* Cast out */
+  template <typename T2>
+  inline operator vec<T2,n> (void) const {
+    vec<T2,n> o;
+    for (unsigned int i = 0; i < GLOSSY_ARRAY_LENGTH (v); i++)
+      o[i] = v[i];
+    return o;
   }
 
   union {

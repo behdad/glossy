@@ -33,6 +33,7 @@ main (void)
   vec2 x = v.br;
   ivec4 iv(9.);
   vec4 y = v.rbbr;
+  vec3 kk (iv);
   vec3 q(3);
   y.g = v[2];
   y.rg = v.rg;

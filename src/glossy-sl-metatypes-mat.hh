@@ -22,9 +22,13 @@
 template <typename T>
 struct mat<T,n>
 {
+  inline mat (void)
+  {
+    memset (this, 0, sizeof (*this));
+  }
   inline mat (T o)
   {
-    memset (*this, 0, sizeof (*this));
+    memset (this, 0, sizeof (*this));
     for (unsigned int i = 0; i < GLOSSY_ARRAY_LENGTH (v); i += n + 1)
       v[i] = o;
   }

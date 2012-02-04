@@ -33,10 +33,19 @@ def partition (name, m, args, orig_m, mm, limited = False):
 				n += 1
 			else:
 				a.append ("const vec<T,%d> &v%d" % (j, i))
-				for k in range (j):
-					if n < orig_m:
-						b.append ("v[%d]=v%d[%d]" % (n, i, k))
-						n += 1
+				# If we're vector-aligned, use vector assignment
+				if j == mm and n % mm == 0:
+					if orig_m == mm:
+						# vec
+						b.append ("*this=v%d" % i)
+					else:
+						# mat
+						b.append ("c[%d]=v%d" % (n / mm, i))
+				else:
+					for k in range (j):
+						if n < orig_m:
+							b.append ("v[%d]=v%d[%d]" % (n, i, k))
+							n += 1
 
 		print "	inline %s (%s) \\" % (name, ', '.join (a))
 		print "	{ %s } \\" % ''.join (x+";" for x in b)

@@ -1,8 +1,6 @@
 'wizzle for swizzle
 
 vec-vec casts
-vec downsize
-vec vec constructor
 
 mat constructors.  all myriad of them.
 

@@ -20,6 +20,7 @@
 #define GLOSSY_SL_METATYPES_HH
 
 #include "glossy-common.hh"
+#include "glossy-sl-metatypes-ctors.hh"
 #include "glossy-sl-metatypes-swizzle.hh"
 
 namespace GLossy {
@@ -113,10 +114,9 @@ struct Swizzle4 {
 template <typename T>
 struct gvec<T,2> {
   inline gvec (T o)
-  { v[0] = o; v[1] = o; }
-  inline gvec (T v0, T v1)
-  { v[0] = v0; v[1] = v1; }
-  // TODO add vector constructors
+  { for (unsigned int i = 0; i < GLOSSY_ARRAY_LENGTH (v); i++) v[i] = o; }
+  GLOSSY_SL_METATYPES_CTORS2
+
   inline T operator [] (unsigned int i) const {
     assert (i < GLOSSY_ARRAY_LENGTH (v));
     return v[i];
@@ -134,10 +134,9 @@ struct gvec<T,2> {
 template <typename T>
 struct gvec<T,3> {
   inline gvec (T o)
-  { v[0] = o; v[1] = 0; v[2] = o; }
-  inline gvec (T v0, T v1, T v2)
-  { v[0] = v0; v[1] = v1; v[2] = v2; }
-  // TODO add vector constructors
+  { for (unsigned int i = 0; i < GLOSSY_ARRAY_LENGTH (v); i++) v[i] = o; }
+  GLOSSY_SL_METATYPES_CTORS3
+
   inline T operator [] (unsigned int i) const {
     assert (i < GLOSSY_ARRAY_LENGTH (v));
     return v[i];
@@ -155,10 +154,9 @@ struct gvec<T,3> {
 template <typename T>
 struct gvec<T,4> {
   inline gvec (T o)
-  { v[0] = o; v[1] = 0; v[2] = o; v[3] = o; }
-  inline gvec (T v0, T v1, T v2, T v3)
-  { v[0] = v0; v[1] = v1; v[2] = v2; v[3] = v3; }
-  // TODO add vector constructors
+  { for (unsigned int i = 0; i < GLOSSY_ARRAY_LENGTH (v); i++) v[i] = o; }
+  GLOSSY_SL_METATYPES_CTORS4
+
   inline T operator [] (unsigned int i) const {
     assert (i < GLOSSY_ARRAY_LENGTH (v));
     return v[i];

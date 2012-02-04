@@ -18,8 +18,15 @@
 
 def perm (n, m, ns, i):
 	if i == 0:
+		const = ''
+		for j in range (len (ns)):
+			if ns[j] in ns[j+1:]:
+				const = 'Const'
+				break;
 		ns = [str (x) for x in ns]
-		print "	Swizzle%d<T,%d,%s> %s; \\" % (n, m, ','.join (ns), 'c'+'##c'.join (ns))
+		args = ','.join (ns)
+		name = '##'.join ('c'+x for x in ns)
+		print "	%sSwizzle%d<T,%d,%s> %s; \\" % (const, n, m, args, name)
 		return
 	for j in range (m):
 		perm (n, m, ns + [j], i - 1)

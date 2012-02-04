@@ -35,6 +35,7 @@ main (void)
   vec4 y = v.rbbr;
   vec3 q(3);
   y.g = v[2];
+  y.rg = v.rg;
   y[3] = 8;
 
 

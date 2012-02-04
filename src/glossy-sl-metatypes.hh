@@ -30,6 +30,13 @@ namespace MetaTypes {
 template <typename T, int n> class gvec;
 
 template <typename T, int n, int i>
+struct ConstSwizzle1 {
+  inline operator T (void) const {
+    return v[i];
+  }
+  T v[n];
+};
+template <typename T, int n, int i>
 struct Swizzle1 {
   inline Swizzle1<T,n,i> & operator = (const T &o) {
     v[i] = o;
@@ -37,6 +44,13 @@ struct Swizzle1 {
   }
   inline operator T (void) const {
     return v[i];
+  }
+  T v[n];
+};
+template <typename T, int n, int i, int j>
+struct ConstSwizzle2 {
+  inline operator gvec<T,2> (void) const {
+    return gvec<T,2> (v[i], v[j]);
   }
   T v[n];
 };
@@ -53,6 +67,13 @@ struct Swizzle2 {
   T v[n];
 };
 template <typename T, int n, int n0, int n1, int n2>
+struct ConstSwizzle3 {
+  inline operator gvec<T,3> (void) const {
+    return gvec<T,3> (v[n0], v[n1], v[n2]);
+  }
+  T v[n];
+};
+template <typename T, int n, int n0, int n1, int n2>
 struct Swizzle3 {
   inline Swizzle3<T,n,n0,n1,n2> & operator = (const gvec<T,3> &o) {
     v[n0] = o.v[0];
@@ -62,6 +83,13 @@ struct Swizzle3 {
   }
   inline operator gvec<T,3> (void) const {
     return gvec<T,3> (v[n0], v[n1], v[n2]);
+  }
+  T v[n];
+};
+template <typename T, int n, int n0, int n1, int n2, int n3>
+struct ConstSwizzle4 {
+  inline operator gvec<T,4> (void) const {
+    return gvec<T,4> (v[n0], v[n1], v[n2], v[n3]);
   }
   T v[n];
 };

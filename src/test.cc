@@ -25,7 +25,6 @@
 #include <glossy-sl.hh>
 
 using namespace GLossy::SL::GLES2SL100::BasicTypes;
-using namespace PrecisionHigh;
 
 int
 main (void)

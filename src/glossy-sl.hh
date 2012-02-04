@@ -22,35 +22,36 @@
 #include "glossy-common.hh"
 #include "glossy-sl-metatypes.hh"
 
-typedef int int_;
-typedef unsigned int unsigned_int;
-typedef float float_;
-#define int Int
-#define float Float
 
 namespace GLossy {
 namespace SL {
 namespace GLES2SL100 {
 namespace BasicTypes {
 
-namespace PrecisionHigh {
-typedef int_ int;
-typedef float_ float;
-typedef MetaTypes::vec<float, 2> vec2;
-typedef MetaTypes::vec<float, 3> vec3;
-typedef MetaTypes::vec<float, 4> vec4;
-typedef MetaTypes::vec<bool,  2> bvec2;
-typedef MetaTypes::vec<bool,  3> bvec3;
-typedef MetaTypes::vec<bool,  4> bvec4;
-typedef MetaTypes::vec<int,   2> ivec2;
-typedef MetaTypes::vec<int,   3> ivec3;
-typedef MetaTypes::vec<int,   4> ivec4;
-typedef MetaTypes::mat<float, 2> mat2;
-typedef MetaTypes::mat<float, 3> mat3;
-typedef MetaTypes::mat<float, 4> mat4;
+/* We have to use defines instead of typedef for the vec/mat types
+ * to pickup the right precision int/float at the usage site. */
+#define vec2	vec<Float,2>
+#define vec3	vec<Float,3>
+#define vec4	vec<Float,4>
+#define bvec2	vec<Bool,2>
+#define bvec3	vec<Bool,3>
+#define bvec4	vec<Bool,4>
+#define ivec2	vec<Int,2>
+#define ivec3	vec<Int,3>
+#define ivec4	vec<Int,4>
+#define mat2	mat<Float,2>
+#define mat3	mat<Float,3>
+#define mat4	mat<Float,4>
 
-struct sampler2D {};
-struct samplerCube {};
+
+namespace PrecisionHigh {
+  using namespace MetaTypes;
+  typedef bool Bool;
+  typedef int Int;
+  typedef float Float;
+
+  struct sampler2D {};
+  struct samplerCube {};
 
 } /* namespace PrecisionHigh */
 
@@ -62,6 +63,8 @@ namespace PrecisionMedium {
 using namespace PrecisionHigh;
 } /* namespace PrecisionMedium */
 
+/* Default to highp */
+using namespace PrecisionHigh;
 
 }}}} /* namespace GLossy::SL::GLES2SL100::BasicTypes */
 
@@ -85,5 +88,11 @@ using namespace PrecisionHigh;
 #define mediump    PrecisionMedium::
 #define lowp       PrecisionLow::
 #define precision  using
+
+typedef int int_;
+typedef unsigned int unsigned_int;
+typedef float float_;
+#define int Int
+#define float Float
 
 #endif /* GLOSSY_SL_HH */

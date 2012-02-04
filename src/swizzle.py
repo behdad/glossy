@@ -38,14 +38,14 @@ print
 for m in range (2, 5):
 	print
 	sig = ','.join ("c%d"%i for i in range (m))
-	print "#define SWIZZLE%d_PERMUTE(%s) \\" % (m,sig)
+	print "#define GLOSSY_SL_METATYPES_SWIZZLE%d_PERMUTE(%s) \\" % (m,sig)
 	for n in range (1, 5):
 		perm (n, m, [], n)
 	print "	/**/"
-	print "#define SWIZZLE%d \\" % m
+	print "#define GLOSSY_SL_METATYPES_SWIZZLE%d \\" % m
 	for s in ["xyzw", "rgba", "stpq"]:
 		sig = ','.join (s[:m])
-		print "	SWIZZLE%d_PERMUTE(%s) \\" % (m,sig)
+		print "	GLOSSY_SL_METATYPES_SWIZZLE%d_PERMUTE(%s) \\" % (m,sig)
 	print "	/**/"
 print
 print "#endif /* GLOSSY_SL_METATYPES_SWIZZLE_HH */"

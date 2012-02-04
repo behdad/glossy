@@ -127,7 +127,7 @@ struct gvec<T,2> {
   }
   union {
     T v[2];
-    SWIZZLE2
+    GLOSSY_SL_METATYPES_SWIZZLE2
   };
 };
 
@@ -148,7 +148,7 @@ struct gvec<T,3> {
   }
   union {
     T v[3];
-    SWIZZLE3
+    GLOSSY_SL_METATYPES_SWIZZLE3
   };
 };
 
@@ -169,7 +169,7 @@ struct gvec<T,4> {
   }
   union {
     T v[4];
-    SWIZZLE4
+    GLOSSY_SL_METATYPES_SWIZZLE4
   };
 };
 

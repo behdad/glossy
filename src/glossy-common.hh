@@ -28,5 +28,10 @@
 #define _GLOSSY_ASSERT_STATIC0(_line, _cond) _GLOSSY_ASSERT_STATIC1 (_line, (_cond))
 #define GLOSSY_ASSERT_STATIC(_cond) _GLOSSY_ASSERT_STATIC0 (__LINE__, (_cond))
 
+#define _GLOSSY_PASTE(a,b) a##b
+#define GLOSSY_PASTE(a,b) _GLOSSY_PASTE (a,b)
+
+#define _GLOSSY_STRINGIZE(a) #a
+#define GLOSSY_STRINGIZE(a) _GLOSSY_STRINGIZE (a)
 
 #endif /* GLOSSY_COMMON_HH */

@@ -95,65 +95,16 @@ struct Swizzle4 : ConstSwizzle4<T,n,n0,n1,n2,n3> {
 
 
 
-template <typename T>
-struct gvec<T,2> {
-  inline gvec (T o)
-  { for (unsigned int i = 0; i < GLOSSY_ARRAY_LENGTH (v); i++) v[i] = o; }
-  GLOSSY_SL_METATYPES_CTORS2
-
-  inline T operator [] (unsigned int i) const {
-    assert (i < GLOSSY_ARRAY_LENGTH (v));
-    return v[i];
-  }
-  inline T& operator [] (unsigned int i) {
-    assert (i < GLOSSY_ARRAY_LENGTH (v));
-    return v[i];
-  }
-  union {
-    T v[2];
-    GLOSSY_SL_METATYPES_SWIZZLE2
-  };
-};
-
-template <typename T>
-struct gvec<T,3> {
-  inline gvec (T o)
-  { for (unsigned int i = 0; i < GLOSSY_ARRAY_LENGTH (v); i++) v[i] = o; }
-  GLOSSY_SL_METATYPES_CTORS3
-
-  inline T operator [] (unsigned int i) const {
-    assert (i < GLOSSY_ARRAY_LENGTH (v));
-    return v[i];
-  }
-  inline T& operator [] (unsigned int i) {
-    assert (i < GLOSSY_ARRAY_LENGTH (v));
-    return v[i];
-  }
-  union {
-    T v[3];
-    GLOSSY_SL_METATYPES_SWIZZLE3
-  };
-};
-
-template <typename T>
-struct gvec<T,4> {
-  inline gvec (T o)
-  { for (unsigned int i = 0; i < GLOSSY_ARRAY_LENGTH (v); i++) v[i] = o; }
-  GLOSSY_SL_METATYPES_CTORS4
-
-  inline T operator [] (unsigned int i) const {
-    assert (i < GLOSSY_ARRAY_LENGTH (v));
-    return v[i];
-  }
-  inline T& operator [] (unsigned int i) {
-    assert (i < GLOSSY_ARRAY_LENGTH (v));
-    return v[i];
-  }
-  union {
-    T v[4];
-    GLOSSY_SL_METATYPES_SWIZZLE4
-  };
-};
+/* Define the vector metatypes */
+#define n 2
+#include "glossy-sl-metatypes-vec.hh"
+#undef n
+#define n 3
+#include "glossy-sl-metatypes-vec.hh"
+#undef n
+#define n 4
+#include "glossy-sl-metatypes-vec.hh"
+#undef n
 
 
 template <typename T, int n>

@@ -113,7 +113,7 @@ struct Swizzle4 {
 template <typename T>
 struct gvec<T,2> {
   inline gvec (T o)
-  { v[0] = o; v[1] = 0; }
+  { v[0] = o; v[1] = o; }
   inline gvec (T v0, T v1)
   { v[0] = v0; v[1] = v1; }
   // TODO add vector constructors

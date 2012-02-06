@@ -99,7 +99,7 @@ namespace BasicTypes {
 #define varying
 #define invariant
 
-#define in const
+#define in
 #define out ERR /* Can't implement this :( */
 #define inout ERR /* Can't implement this :( */
 

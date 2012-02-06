@@ -97,6 +97,7 @@ namespace BasicTypes {
 #define uniform
 #define attribute
 #define varying
+#define invariant
 
 #define in const
 #define out ERR /* Can't implement this :( */
@@ -107,6 +108,7 @@ namespace BasicTypes {
 #define highp      PrecisionHigh::
 #define mediump    PrecisionMedium::
 #define lowp       PrecisionLow::
+
 
 typedef int int_;
 typedef unsigned int unsigned_int;

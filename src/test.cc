@@ -29,6 +29,12 @@ using namespace GLossy::SL::GLES2SL100::BasicTypes;
 int
 main (void)
 {
+  {// 3.4 Preprocessor
+    // __LINE__
+    // __FILE__
+    assert (100 == __VERSION__);
+    assert (1 == GL_ES);
+  }
   {// 4.1.2 Booleans
     bool success;
     // declare “success” to be a Boolean
@@ -164,6 +170,22 @@ main (void)
     precision highp int;
     precision lowp sampler2D;
     precision lowp samplerCube;
+  }
+  {// 4.5.4 Available Precision Qualifiers
+    assert (1 == GL_FRAGMENT_PRECISION_HIGH);
+  }
+  {// 4.6.1 The Invariant Qualifier
+    {
+      // XFAIL Not sure if we can support this
+      //invariant gl_Position; // make existing gl_Position be invariant
+
+      varying mediump vec3 Color;
+      // XFAIL same here
+      //invariant Color;  // make existing Color be invariant
+    }
+    {
+      invariant varying mediump vec3 Color;
+    }
   }
 
 

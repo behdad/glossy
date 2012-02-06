@@ -2,7 +2,7 @@ non-scalar to scalar cast (returns first item)
 
 'wizzle for swizzle
 
-operators
+operators between scalars and non-scalars (both way)
 
 structure constructor and equlity nequality
 

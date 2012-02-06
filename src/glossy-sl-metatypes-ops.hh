@@ -29,7 +29,115 @@ namespace MetaTypes {
 template <typename T>
 struct ComponentWiseOperators
 {
-  inline bool operator == (const T &o) const
+  /* In order of precedence */
+
+  inline const T operator++ (int) // postfix
+  {
+    const T &t = _this ();
+    T v = t;
+    ++t;
+    return v;
+  }
+  inline const T operator-- (int) // postfix
+  {
+    const T &t = _this ();
+    T v = t;
+    --t;
+    return v;
+  }
+  inline T& operator++ (void) // prefix
+  {
+    T &t = _this ();
+    for (unsigned int i = 0; i < len (); i++)
+      ++t.v[i];
+    return t;
+  }
+  inline T& operator-- (void) // prefix
+  {
+    T &t = _this ();
+    for (unsigned int i = 0; i < len (); i++)
+      --t.v[i];
+    return t;
+  }
+  inline const T operator+ (void) // unary
+  {
+    return _this ();
+  }
+  inline const T operator- (void) // unary
+  {
+    const T &t = _this ();
+    T v;
+    for (unsigned int i = 0; i < len (); i++)
+      v.v[i] = -t.v[i];
+    return v;
+  }
+  inline const T operator! (void) // unary
+  {
+    const T &t = _this ();
+    T v;
+    for (unsigned int i = 0; i < len (); i++)
+      v.v[i] = !t.v[i];
+    return v;
+  }
+  inline const T operator* (const T &o) const
+  {
+    const T &t = _this ();
+    T v;
+    for (unsigned int i = 0; i < len (); i++)
+      v.v[i] = t.v[i] * o.v[i];
+    return v;
+  }
+  inline const T operator/ (const T &o) const
+  {
+    const T &t = _this ();
+    T v;
+    for (unsigned int i = 0; i < len (); i++)
+      v.v[i] = t.v[i] / o.v[i];
+    return v;
+  }
+  inline const T operator+ (const T &o) const
+  {
+    const T &t = _this ();
+    T v;
+    for (unsigned int i = 0; i < len (); i++)
+      v.v[i] = t.v[i] + o.v[i];
+    return v;
+  }
+  inline const T operator- (const T &o) const
+  {
+    const T &t = _this ();
+    T v;
+    for (unsigned int i = 0; i < len (); i++)
+      v.v[i] = t.v[i] - o.v[i];
+    return v;
+  }
+  inline bool operator< (const T &o) const
+  {
+    const T &t = _this ();
+    for (unsigned int i = 0; i < len (); i++)
+      if (t.v[i] >= o.v[i])
+        return false;
+    return true;
+  }
+  inline bool operator> (const T &o) const
+  {
+    const T &t = _this ();
+    for (unsigned int i = 0; i < len (); i++)
+      if (t.v[i] <= o.v[i])
+        return false;
+    return true;
+  }
+  inline bool operator<= (const T &o) const
+  {
+    const T &t = *reinterpret_cast<const T *> (this);
+    return !(t > o);
+  }
+  inline bool operator>= (const T &o) const
+  {
+    const T &t = *reinterpret_cast<const T *> (this);
+    return !(t < o);
+  }
+  inline bool operator== (const T &o) const
   {
     const T &t = _this ();
     for (unsigned int i = 0; i < len (); i++)
@@ -37,23 +145,36 @@ struct ComponentWiseOperators
         return false;
     return true;
   }
-  inline bool operator != (const T &o) const
+  inline bool operator!= (const T &o) const
   {
     const T &t = *reinterpret_cast<const T *> (this);
     return !(t == o);
   }
-#if 0
-  inline bool operator != (const Point &p) const;
-  inline Point& operator+= (const Vector &v);
-  inline Point& operator-= (const Vector &v);
-  inline const Point operator+ (const Vector &v) const;
-  inline const Point operator- (const Vector &v) const;
-  inline const Vector operator- (const Point &p) const;
-#endif
+  inline T& operator+= (const T &o)
+  {
+    T &t = _this ();
+    return t = t + o;
+  }
+  inline T& operator-= (const T &o)
+  {
+    T &t = _this ();
+    return t = t - o;
+  }
+  inline T& operator*= (const T &o)
+  {
+    T &t = _this ();
+    return t = t * o;
+  }
+  inline T& operator/= (const T &o)
+  {
+    T &t = _this ();
+    return t = t / o;
+  }
 
 private:
   unsigned int len (void) const { return GLOSSY_ARRAY_LENGTH (_this().v); }
   const T & _this (void) const { return *reinterpret_cast<const T *> (this); }
+  T & _this (void) { return *reinterpret_cast<T *> (this); }
 };
 
 

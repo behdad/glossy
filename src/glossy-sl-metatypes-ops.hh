@@ -71,14 +71,6 @@ struct ComponentWiseOperators
       v.v[i] = -t.v[i];
     return v;
   }
-  inline const T operator! (void) // unary
-  {
-    const T &t = _this ();
-    T v;
-    for (unsigned int i = 0; i < len (); i++)
-      v.v[i] = !t.v[i];
-    return v;
-  }
   inline const T operator* (const T &o) const
   {
     const T &t = _this ();

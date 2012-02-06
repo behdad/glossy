@@ -1,3 +1,5 @@
+make all casts explicit?
+
 non-scalar to scalar cast (returns first item)
 
 'wizzle for swizzle

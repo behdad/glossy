@@ -187,6 +187,53 @@ main (void)
       invariant varying mediump vec3 Color;
     }
   }
+  {// 5.4.2 Vector and Matrix Constructors
+    vec4 color = vec4(0.0, 1.0, 0.0, 1.0);
+    vec4 rgba = vec4(1.0);           // sets each component to 1.0
+    vec3 rgb = vec3(color); // drop the 4th component
+  }
+  {// 5.4.3 Structure Constructors
+    struct light {
+      float intensity;
+      vec3 position;
+    };
+    // XFAIL C++ doesn't support this syntax :(
+    //light lightVar = light(3.0, vec3(1.0, 2.0, 3.0));
+  }
+  {// 5.5 Vector Components
+    {
+      vec2 pos;
+      pos.x; // is legal
+    }
+    {
+      vec4 v4;
+      v4.rgba;  // is a vec4 and the same as just using v4,
+      v4.rgb;   // is a vec3,
+      v4.b;     // is a float,
+      v4.xy;    // is a vec2,
+    }
+    {
+      vec4 pos = vec4(1.0, 2.0, 3.0, 4.0);
+      vec4 swiz= pos.wzyx; // swiz = (4.0, 3.0, 2.0, 1.0)
+      assert ((vec4(4.0, 3.0, 2.0, 1.0) == swiz));
+      vec4 dup = pos.xxyy; // dup = (1.0, 1.0, 2.0, 2.0)
+      assert ((vec4(1.0, 1.0, 2.0, 2.0) == dup));
+    }
+    {
+      vec4 pos = vec4(1.0, 2.0, 3.0, 4.0);
+      pos.xw = vec2(5.0, 6.0);         // pos = (5.0, 2.0, 3.0, 6.0)
+      assert ((vec4(5.0, 2.0, 3.0, 6.0) == pos));
+      pos.wx = vec2(7.0, 8.0);         // pos = (8.0, 2.0, 3.0, 7.0)
+      assert ((vec4(8.0, 2.0, 3.0, 7.0) == pos));
+      assert (3.0 == pos[2]);
+    }
+  }
+  {// 5.6 Matrix Components
+    mat4 m;
+    m[1] = vec4(2.0);        // sets the second column to all 2.0
+    m[0][0] = 1.0;           // sets the upper left element to 1.0
+    m[2][3] = 2.0;           // sets the 4th element of the third column to 2.0
+  }
 
 
   const vec3 v (1., 2., 3.);

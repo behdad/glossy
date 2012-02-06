@@ -26,48 +26,67 @@
 namespace GLossy {
 namespace SL {
 namespace GLES2SL100 {
+
 namespace BasicTypes {
 
-/* We have to use defines instead of typedef for the vec/mat types
- * to pickup the right precision int/float at the usage site. */
-#define vec2	vec<Float,2>
-#define vec3	vec<Float,3>
-#define vec4	vec<Float,4>
-#define bvec2	vec<Bool,2>
-#define bvec3	vec<Bool,3>
-#define bvec4	vec<Bool,4>
-#define ivec2	vec<Int,2>
-#define ivec3	vec<Int,3>
-#define ivec4	vec<Int,4>
-#define mat2	mat<Float,2>
-#define mat3	mat<Float,3>
-#define mat4	mat<Float,4>
+  /* We have to use defines instead of typedef for the vec/mat types
+   * to pickup the right precision int/float at the usage site. */
+# define vec2	vec<Float,2>
+# define vec3	vec<Float,3>
+# define vec4	vec<Float,4>
+# define bvec2	vec<Bool,2>
+# define bvec3	vec<Bool,3>
+# define bvec4	vec<Bool,4>
+# define ivec2	vec<Int,2>
+# define ivec3	vec<Int,3>
+# define ivec4	vec<Int,4>
+# define mat2	mat<Float,2>
+# define mat3	mat<Float,3>
+# define mat4	mat<Float,4>
 
 
-namespace PrecisionHigh {
-  using namespace MetaTypes;
-  typedef bool Bool;
-  typedef int Int;
-  typedef float Float;
+  namespace PrecisionHigh {
+    using namespace MetaTypes;
+    typedef bool Bool;
+    typedef int Int;
+    typedef float Float;
 
-  struct sampler2D {};
-  struct samplerCube {};
+    struct Sampler2D {};
+    struct SamplerCube {};
 
-} /* namespace PrecisionHigh */
+  } /* namespace PrecisionHigh */
 
-namespace PrecisionLow {
-using namespace PrecisionHigh;
-} /* namespace PrecisionLow */
+  namespace PrecisionLow {
+  using namespace PrecisionHigh;
+  } /* namespace PrecisionLow */
 
-namespace PrecisionMedium {
-using namespace PrecisionHigh;
-} /* namespace PrecisionMedium */
+  namespace PrecisionMedium {
+  using namespace PrecisionHigh;
+  } /* namespace PrecisionMedium */
 
-/* Default to highp */
-using namespace PrecisionHigh;
+  namespace VertexShader {
+    using PrecisionHigh::Float;
+    using PrecisionHigh::Int;
+    using PrecisionLow::Sampler2D;
+    using PrecisionLow::SamplerCube;
+  } /* namespace VertexShader */
 
-}}}} /* namespace GLossy::SL::GLES2SL100::BasicTypes */
+  namespace FragmentShader {
+    /* ES2 doesn't have a default float type in fragment shader.
+     * Users must declare one. */
+    using PrecisionMedium::Int;
+    using PrecisionLow::Sampler2D;
+    using PrecisionLow::SamplerCube;
+  } /* namespace FragmentShader */
 
+  /* Default to highp */
+  using namespace PrecisionHigh;
+
+} /* namespace BasicTypes */
+
+
+
+}}} /* namespace GLossy::SL::GLES2SL100 */
 
 /* TODO move these to the proper place */
 #define GL_ES 1
@@ -83,16 +102,18 @@ using namespace PrecisionHigh;
 #define out ERR /* Can't implement this :( */
 #define inout ERR /* Can't implement this :( */
 
-/* For now, these don't do anything */
+#define GL_FRAGMENT_PRECISION_HIGH 1
+#define precision  using
 #define highp      PrecisionHigh::
 #define mediump    PrecisionMedium::
 #define lowp       PrecisionLow::
-#define precision  using
 
 typedef int int_;
 typedef unsigned int unsigned_int;
 typedef float float_;
 #define int Int
 #define float Float
+#define sampler2D Sampler2D
+#define samplerCube SamplerCube
 
 #endif /* GLOSSY_SL_HH */

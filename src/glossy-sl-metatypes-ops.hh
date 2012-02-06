@@ -52,7 +52,7 @@ struct ComponentWiseOperators
 #endif
 
 private:
-  static unsigned int len (void) { return GLOSSY_ARRAY_LENGTH (T::v); }
+  unsigned int len (void) const { return GLOSSY_ARRAY_LENGTH (_this().v); }
   const T & _this (void) const { return *reinterpret_cast<const T *> (this); }
 };
 

@@ -195,6 +195,7 @@ main (void)
   vec4 y = v.rbbr;
   vec3 kk (iv);
   vec3 q(3);
+  q == kk;
   y.g = v[2];
   y.rg = v.rg;
   y[3] = 8;

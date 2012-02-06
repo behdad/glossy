@@ -21,6 +21,7 @@
 
 #include "glossy-common.hh"
 #include "glossy-sl-metatypes-ctors.hh"
+#include "glossy-sl-metatypes-ops.hh"
 #include "glossy-sl-metatypes-swizzle.hh"
 
 namespace GLossy {
@@ -32,28 +33,32 @@ template <typename T, int n> class vec;
 template <typename T, int n> class mat;
 
 template <typename T, int n, int n0>
-struct ConstSwizzle1 {
+struct ConstSwizzle1
+{
   inline operator T (void) const {
     return v[n0];
   }
   T v[n];
 };
 template <typename T, int n, int n0>
-struct Swizzle1 : ConstSwizzle1<T,n,n0> {
+struct Swizzle1 : ConstSwizzle1<T,n,n0>
+{
   inline Swizzle1<T,n,n0> & operator = (const T &o) {
     this->v[n0] = o;
     return *this;
   }
 };
 template <typename T, int n, int n0, int n1>
-struct ConstSwizzle2 {
+struct ConstSwizzle2
+{
   inline operator vec<T,2> (void) const {
     return vec<T,2> (v[n0], v[n1]);
   }
   T v[n];
 };
 template <typename T, int n, int n0, int n1>
-struct Swizzle2 : ConstSwizzle2<T,n,n0,n1> {
+struct Swizzle2 : ConstSwizzle2<T,n,n0,n1>
+{
   inline Swizzle2<T,n,n0,n1> & operator = (const vec<T,2> &o) {
     this->v[n0] = o.v[0];
     this->v[n1] = o.v[1];
@@ -61,14 +66,16 @@ struct Swizzle2 : ConstSwizzle2<T,n,n0,n1> {
   }
 };
 template <typename T, int n, int n0, int n1, int n2>
-struct ConstSwizzle3 {
+struct ConstSwizzle3
+{
   inline operator vec<T,3> (void) const {
     return vec<T,3> (v[n0], v[n1], v[n2]);
   }
   T v[n];
 };
 template <typename T, int n, int n0, int n1, int n2>
-struct Swizzle3 : ConstSwizzle3<T,n,n0,n1,n2> {
+struct Swizzle3 : ConstSwizzle3<T,n,n0,n1,n2>
+{
   inline Swizzle3<T,n,n0,n1,n2> & operator = (const vec<T,3> &o) {
     this->v[n0] = o.v[0];
     this->v[n1] = o.v[1];
@@ -77,14 +84,16 @@ struct Swizzle3 : ConstSwizzle3<T,n,n0,n1,n2> {
   }
 };
 template <typename T, int n, int n0, int n1, int n2, int n3>
-struct ConstSwizzle4 {
+struct ConstSwizzle4
+{
   inline operator vec<T,4> (void) const {
     return vec<T,4> (v[n0], v[n1], v[n2], v[n3]);
   }
   T v[n];
 };
 template <typename T, int n, int n0, int n1, int n2, int n3>
-struct Swizzle4 : ConstSwizzle4<T,n,n0,n1,n2,n3> {
+struct Swizzle4 : ConstSwizzle4<T,n,n0,n1,n2,n3>
+{
   inline Swizzle4<T,n,n0,n1,n2,n3> & operator = (const vec<T,4> &o) {
     this->v[n0] = o.v[0];
     this->v[n1] = o.v[1];

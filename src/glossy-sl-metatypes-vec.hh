@@ -20,7 +20,7 @@
 
 /* n is defined to the vec len */
 template <typename T>
-struct vec<T,n>
+struct vec<T,n> : public ComponentWiseOperators<vec<T,n> >
 {
   inline vec (void)
   {

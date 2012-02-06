@@ -11,6 +11,7 @@ PUBLICHEADERS = \
 	glossy-sl-metatypes.hh \
 	glossy-sl-metatypes-ctors.hh \
 	glossy-sl-metatypes-mat.hh \
+	glossy-sl-metatypes-ops.hh \
 	glossy-sl-metatypes-swizzle.hh \
 	glossy-sl-metatypes-vec.hh \
 	$(NULL)

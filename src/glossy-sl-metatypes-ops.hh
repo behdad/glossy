@@ -30,7 +30,6 @@ template <typename T>
 struct ComponentWiseOperators
 {
   /* In order of precedence */
-
   inline const T operator++ (int) // postfix
   {
     const T &t = _this ();
@@ -168,6 +167,98 @@ private:
   const T & _this (void) const { return *reinterpret_cast<const T *> (this); }
   T & _this (void) { return *reinterpret_cast<T *> (this); }
 };
+
+
+
+/* Non-scalar x scalar operators */
+
+/* In order of precedence */
+template <template <typename ElementType, int n> class T, typename ElementType, int n>
+inline const T<ElementType, n> operator* (const T<ElementType, n> &t, const ElementType &o)
+{
+  return t * T<ElementType, n> (o);
+}
+template <template <typename ElementType, int n> class T, typename ElementType, int n>
+inline const T<ElementType, n> operator/ (const T<ElementType, n> &t, const ElementType &o)
+{
+  return t / T<ElementType, n> (o);
+}
+template <template <typename ElementType, int n> class T, typename ElementType, int n>
+inline const T<ElementType, n> operator+ (const T<ElementType, n> &t, const ElementType &o)
+{
+  return t + T<ElementType, n> (o);
+}
+template <template <typename ElementType, int n> class T, typename ElementType, int n>
+inline const T<ElementType, n> operator- (const T<ElementType, n> &t, const ElementType &o)
+{
+  return t - T<ElementType, n> (o);
+}
+template <template <typename ElementType, int n> class T, typename ElementType, int n>
+inline bool operator< (const T<ElementType, n> &t, const ElementType &o)
+{
+  return t < T<ElementType, n> (o);
+}
+template <template <typename ElementType, int n> class T, typename ElementType, int n>
+inline bool operator> (const T<ElementType, n> &t, const ElementType &o)
+{
+  return t > T<ElementType, n> (o);
+}
+template <template <typename ElementType, int n> class T, typename ElementType, int n>
+inline bool operator<= (const T<ElementType, n> &t, const ElementType &o)
+{
+  return t <= T<ElementType, n> (o);
+}
+template <template <typename ElementType, int n> class T, typename ElementType, int n>
+inline bool operator>= (const T<ElementType, n> &t, const ElementType &o)
+{
+  return t >= T<ElementType, n> (o);
+}
+template <template <typename ElementType, int n> class T, typename ElementType, int n>
+inline bool operator== (const T<ElementType, n> &t, const ElementType &o)
+{
+  return t == T<ElementType, n> (o);
+}
+template <template <typename ElementType, int n> class T, typename ElementType, int n>
+inline bool operator!= (const T<ElementType, n> &t, const ElementType &o)
+{
+  return t != T<ElementType, n> (o);
+}
+template <template <typename ElementType, int n> class T, typename ElementType, int n>
+inline const T<ElementType, n>& operator+= (T<ElementType, n> &t, const ElementType &o)
+{
+  return t += T<ElementType, n> (o);
+}
+template <template <typename ElementType, int n> class T, typename ElementType, int n>
+inline const T<ElementType, n>& operator-= (T<ElementType, n> &t, const ElementType &o)
+{
+  return t -= T<ElementType, n> (o);
+}
+template <template <typename ElementType, int n> class T, typename ElementType, int n>
+inline const T<ElementType, n>& operator*= (T<ElementType, n> &t, const ElementType &o)
+{
+  return t *= T<ElementType, n> (o);
+}
+template <template <typename ElementType, int n> class T, typename ElementType, int n>
+inline const T<ElementType, n>& operator/= (T<ElementType, n> &t, const ElementType &o)
+{
+  return t /= T<ElementType, n> (o);
+}
+
+
+/* Scalar x non-scalar operators */
+
+/* In order of precedence */
+template <template <typename ElementType, int n> class T, typename ElementType, int n>
+inline const T<ElementType, n> operator* (const ElementType &o, const T<ElementType, n> &t)
+{
+  return T<ElementType, n> (o) * t;
+}
+
+template <template <typename, int n> class T, typename ElementType, int n>
+inline const T<float, n> operator* (ElementType o, const T<float, n> &t)
+{
+  return T<float, n> (o) * t;
+}
 
 
 }}} /* namespace GLossy::SL::MetaTypes */

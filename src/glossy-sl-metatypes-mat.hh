@@ -20,7 +20,7 @@
 
 /* n is defined to the mat size */
 template <typename T>
-struct mat<T,n>
+struct mat<T,n> : public ComponentWiseOperators<vec<T,n> >
 {
   typedef T ElementType;
   enum { Size = n, Len = n * n, Dim = 2 };

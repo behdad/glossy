@@ -25,6 +25,7 @@
 #include <glossy-sl.hh>
 
 using namespace GLossy::SL::GLES2SL100::BasicTypes;
+using namespace GLossy::SL::MetaTypes;
 
 int
 main (void)
@@ -249,6 +250,11 @@ main (void)
 
   mat2 m (1,2,3,4);
   mat2 mm (m);
+
+  y = y * 2;
+  y *= 1.3;
+  mm -= 1;
+  y = 3. * y;
 
   float f = y.g;
 

@@ -22,6 +22,9 @@
 template <typename T>
 struct vec<T,n> : public ComponentWiseOperators<vec<T,n> >
 {
+  typedef T ElementType;
+  enum { Size = n, Len = n, Dim = 1 };
+
   inline vec (void)
   {
     memset (this, 0, sizeof (*this));
@@ -54,7 +57,7 @@ struct vec<T,n> : public ComponentWiseOperators<vec<T,n> >
   }
 
   union {
-    T v[n];
+    T v[Len];
     /* Assorted swizzles */
     GLOSSY_PASTE (GLOSSY_SL_METATYPES_SWIZZLE, n)
   };

@@ -22,6 +22,9 @@
 template <typename T>
 struct mat<T,n>
 {
+  typedef T ElementType;
+  enum { Size = n, Len = n * n, Dim = 2 };
+
   inline mat (void)
   {
     memset (this, 0, sizeof (*this));
@@ -45,5 +48,5 @@ struct mat<T,n>
     return *reinterpret_cast<vec<T,n>*> (v + i * n);
   }
 
-  T v[n * n];
+  T v[Len];
 };

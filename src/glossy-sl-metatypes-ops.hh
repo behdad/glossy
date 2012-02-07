@@ -164,7 +164,7 @@ struct ComponentWiseOperators
   }
 
 private:
-  unsigned int len (void) const { return GLOSSY_ARRAY_LENGTH (_this().v); }
+  unsigned int len (void) const { return T::Len; }
   const T & _this (void) const { return *reinterpret_cast<const T *> (this); }
   T & _this (void) { return *reinterpret_cast<T *> (this); }
 };

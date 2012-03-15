@@ -1,3 +1,6 @@
+Use Boost for types?
+http://www.boost.org/doc/libs/1_48_0/libs/math/doc/sf_and_dist/html/index.html
+
 non-scalar to scalar cast (returns first item)
 
 'wizzle for swizzle
